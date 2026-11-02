@@ -79,6 +79,7 @@ export default function MarketPage() {
           <p className="prose" style={{ margin: 0 }}>{market.resolutionRules}</p>
           <div className="kv"><span>Source</span><span>{market.resolutionSource}</span></div>
           <div className="kv"><span>Trading closes</span><span>{dateTime(market.closesAt)}</span></div>
+          <div className="kv"><span>Volume</span><span className="num">{naira(market.volumeKobo ?? 0)} · {market.tradeCount ?? 0} trades</span></div>
         </section>
       </div>
 

@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { api, ApiError } from '@/lib/api';
 import { useAuth } from '@/lib/auth';
 import { dateTime, naira } from '@/lib/format';
+import { PayoutPanel } from '@/components/PayoutPanel';
 
 interface Entry { id: string; kind: string; amountKobo: number; balanceAfterKobo: number; createdAt: string }
-const KIND: Record<string, string> = { DEPOSIT: 'Deposit', TRADE_BUY: 'Bought shares', TRADE_SELL: 'Sold shares', PAYOUT: 'Winnings', REFUND: 'Refund' };
+const KIND: Record<string, string> = { DEPOSIT: 'Deposit', TRADE_BUY: 'Bought shares', TRADE_SELL: 'Sold shares', PAYOUT: 'Winnings', REFUND: 'Refund', WITHDRAWAL: 'Withdrawal', WITHDRAWAL_REFUND: 'Withdrawal refunded' };
 
 export default function WalletPage() {
   const { user, ready, balanceKobo } = useAuth();
@@ -49,7 +50,8 @@ export default function WalletPage() {
           )}
         </section>
       </div>
-      <aside className="card stack" style={{ gap: 12 }}>
+      <aside className="stack">
+      <div className="card stack" style={{ gap: 12 }}>
         <h2>Add funds</h2>
         <label className="field">Amount (₦)
           <input className="input num" inputMode="numeric" value={amount} onChange={(e) => setAmount(e.target.value.replace(/[^0-9]/g, ''))} />
@@ -58,6 +60,8 @@ export default function WalletPage() {
         {err && <div className="alert error">{err}</div>}
         <button className="btn primary block" disabled={busy || Number(amount) < 100} onClick={() => void deposit()}>{busy ? 'Redirecting…' : 'Pay with Paystack'}</button>
         <span className="muted small">Card, bank transfer or USSD via Paystack. Minimum ₦100.</span>
+      </div>
+      <PayoutPanel />
       </aside>
     </div>
   );

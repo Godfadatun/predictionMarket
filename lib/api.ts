@@ -4,8 +4,10 @@ const TOKEN_KEY = 'pm_token';
 export interface Outcome { id: string; label: string; price: number; shares: number }
 export interface Market {
   id: string; slug: string; title: string; description: string; category: string; state: string | null; status: string;
-  closesAt: string; resolutionSource: string; resolutionRules: string; liquidityB: number; outcomes: Outcome[];
+  closesAt: string; resolutionSource: string; resolutionRules: string; liquidityB: number; outcomes: Outcome[]; tradeCount: number; volumeKobo: number;
 }
+export interface PayoutAccount { bankCode: string; bankName: string | null; accountNumber: string; accountName: string; status: 'PENDING_VERIFICATION' | 'VERIFIED' | 'FAILED'; failureReason: string | null }
+export interface Withdrawal { reference: string; amountKobo: number; status: string; source: 'MANUAL' | 'AUTO_PAYOUT'; createdAt: string }
 export interface User { id: string; email: string; phone: string; fullName: string; role: 'USER' | 'ADMIN' }
 export interface Position {
   id: string; marketId: string; outcomeId: string; shares: number; costKobo: number; payoutKobo: number;

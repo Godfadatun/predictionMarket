@@ -11,11 +11,11 @@ API: [`predictionMarketServer`](https://github.com/godfadatun/predictionMarketSe
 | `/` | Featured presidential market, category tabs and market cards with live odds |
 | `/states` | Tile-grid map of the 37 states, coloured by the leading candidate, with a table view |
 | `/markets/[slug]` | Odds, your position, resolution rules/source and a trade ticket. The ticket quotes trades client-side with the same LMSR maths as the server and sends a 2% slippage limit. |
-| `/wallet` | Balance, ledger activity and Paystack deposits |
+| `/wallet` | Balance, ledger activity, Paystack deposits, the payout bank account (BVN-verified via Paystack) and withdrawals. Winnings of ₦1,000 or more are sent to the verified account automatically. |
 | `/wallet/callback` | Paystack redirect target; verifies the deposit with the API |
 | `/portfolio` | Open and settled positions |
 | `/login`, `/register` | Email + Nigerian phone + password |
-| `/admin` | Create markets and run the two-step resolution (propose, then a second admin confirms) |
+| `/admin` | Create markets with starting odds (`Label = 40` per line), edit or close markets (rules lock after the first trade), open a Spotify week, and run the two-step resolution |
 
 ## Run
 
